@@ -14,7 +14,6 @@ public class Agencia {
     private String numero;
     private String digito;
     private Cidade cidade;
-    private List<Historico> listaContas = new ArrayList<Historico>();
 
     public Agencia(String numero, String digito, Cidade cidade) {
         Assert.hasText(numero, NUMERO_AGENCIA_OBRIGATORIO);
