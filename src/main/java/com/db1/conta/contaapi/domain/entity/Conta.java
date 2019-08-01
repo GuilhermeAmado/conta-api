@@ -37,7 +37,8 @@ public class Conta {
     @Column(name = "saldo")
     private Double saldo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
+    @ElementCollection
+    @CollectionTable(name="historico", joinColumns=@JoinColumn(name="conta_id"))
     private List<Historico> historicos = new ArrayList<Historico>();
 
     protected Conta() {}               // construtor para o JPA
@@ -53,6 +54,10 @@ public class Conta {
         this.numero = numero;
         this.cliente = cliente;
         this.saldo = 0.0;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Agencia getAgencia() {
