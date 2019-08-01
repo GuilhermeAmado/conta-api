@@ -2,9 +2,12 @@ package com.db1.conta.contaapi.domain.entity;
 
 import org.springframework.util.Assert;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "conta")
 public class Conta {
 
     public static final String INFORMAR_AGENCIA_OBRIGATORIO = "Informar a agência é obrigatório";
@@ -12,13 +15,32 @@ public class Conta {
     public static final String INFORMAR_CONTA_OBRIGATORIO = "Informar o número da conta é obrigatório";
     public static final String INFORMAR_CLIENTE_OBRIGATORIO = "Informar o cliente é obrigatório";
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_agencia", nullable = false)
     private Agencia agencia;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "contaTipo", nullable = false, length = 15)
     private ContaTipo contaTipo;
+
+    @Column(name = "numero", length = 20, nullable = false, unique = true)
     private String numero;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
+
+    @Column(name = "saldo")
     private Double saldo;
-    private List<Historico> listaContas = new ArrayList<Historico>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
+    private List<Historico> historicos = new ArrayList<Historico>();
+
+    protected Conta() {}               // construtor para o JPA
 
     public Conta(Agencia agencia, ContaTipo contaTipo, String numero, Cliente cliente) {
         Assert.notNull(agencia, INFORMAR_AGENCIA_OBRIGATORIO);
@@ -31,7 +53,6 @@ public class Conta {
         this.numero = numero;
         this.cliente = cliente;
         this.saldo = 0.0;
-        this.listaContas = new ArrayList<Historico>();
     }
 
     public Agencia getAgencia() {
@@ -54,7 +75,7 @@ public class Conta {
         return saldo;
     }
 
-    public List<Historico> getListaContas() {
-        return listaContas;
+    public List<Historico> getHistoricos() {
+        return historicos;
     }
 }

@@ -2,6 +2,10 @@ package com.db1.conta.contaapi.domain.entity;
 
 import org.springframework.util.Assert;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "endereco")
 public class Endereco {
 
     public static final String INFORMAR_CLIENTE_OBRIGATORIO = "Informar o cliente é obrigatório";
@@ -12,14 +16,35 @@ public class Endereco {
     public static final String INFORMAR_CEP_OBRIGATORIO = "Informar o CEP é obrigatório";
     public static final String CEP_INVALIDO = "CEP inválido";
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_cliente", nullable = false)
     private Cliente cliente;
+
+    @Column(name = "logradouro", length = 255, nullable = false)
     private String logradouro;
+
+    @Column(name = "numero", length = 6, nullable = false)
     private String numero;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_cidade", nullable = false)
     private Cidade cidade;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "enderecoTipo", length = 15, nullable = false)
     private EnderecoTipo enderecoTipo;
+
+    @Column(name = "complemento", nullable = true)
     private String complemento;
+
+    @Column(name = "cep", nullable = false)
     private String cep;
+
+    protected Endereco(Cliente clienteTeste, String rua_pavão, String numero, Object complemento, Cidade cidade1) {}               // construtor para o JPA
 
     public Endereco(Cliente cliente, String logradouro, String numero, String complemento, Cidade cidade, EnderecoTipo enderecoTipo, String cep) {
         Assert.notNull(cliente, INFORMAR_CLIENTE_OBRIGATORIO);

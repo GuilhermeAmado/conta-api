@@ -17,7 +17,7 @@ public class ClienteTest {
         List<Endereco> endereco = new ArrayList<Endereco>();
         List<Conta> conta = new ArrayList<Conta>();
         try {
-            Cliente cliente = new Cliente(null, endereco, conta, "12345678900");
+            Cliente cliente = new Cliente(null, "12345678901");
         } catch (Exception e) {
             mensagem = e.getMessage();
         }
