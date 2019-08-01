@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "cliente", uniqueConstraints = @UniqueConstraint(columnNames = { "nome", "cpf" }))
+@Table(name = "cliente")
 public class Cliente {
 
     public static final String INFORMAR_NOME_OBRIGATORIO = "Informar o nome é obrigatorio";

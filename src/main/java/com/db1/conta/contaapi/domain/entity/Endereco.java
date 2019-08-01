@@ -44,7 +44,7 @@ public class Endereco {
     @Column(name = "cep", nullable = false)
     private String cep;
 
-    protected Endereco(Cliente clienteTeste, String rua_pavão, String numero, Object complemento, Cidade cidade1) {}               // construtor para o JPA
+    protected Endereco() {}    // construtor para o JPA
 
     public Endereco(Cliente cliente, String logradouro, String numero, String complemento, Cidade cidade, EnderecoTipo enderecoTipo, String cep) {
         Assert.notNull(cliente, INFORMAR_CLIENTE_OBRIGATORIO);
