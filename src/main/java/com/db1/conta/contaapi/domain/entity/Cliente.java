@@ -20,10 +20,10 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "nome", length = 255, nullable = false)
+    @Column(name = "nome", length = 80, nullable = false)
     private String nome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "fk_listaEnderecos")
     private List<Endereco> listaEnderecos = new ArrayList<Endereco>();
 
@@ -46,6 +46,11 @@ public class Cliente {
 
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public void addEndereco(Cliente cliente, String logradouro, String numero, String complemento, Cidade cidade, EnderecoTipo enderecoTipo, String cep) {
+        Endereco endereco = new Endereco(this, logradouro, numero, complemento, cidade, enderecoTipo, cep);
+        this.listaEnderecos.add(endereco);
     }
 
     public String getNome() {
