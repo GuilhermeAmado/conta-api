@@ -24,10 +24,10 @@ public class Endereco {
     @JoinColumn(name = "fk_cliente", nullable = false)
     private Cliente cliente;
 
-    @Column(name = "logradouro", length = 255, nullable = false)
+    @Column(name = "logradouro", length = 100, nullable = false)
     private String logradouro;
 
-    @Column(name = "numero", length = 6, nullable = false)
+    @Column(name = "numero", length = 10, nullable = false)
     private String numero;
 
     @ManyToOne
