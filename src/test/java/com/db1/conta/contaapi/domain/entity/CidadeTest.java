@@ -13,7 +13,7 @@ public class CidadeTest {
         }catch (Exception e) {
             mensagem = e.getMessage();
         }
-        Assert.assertEquals("Nome é obrigatório", mensagem);
+        Assert.assertEquals(Cidade.NOME_OBRIGATORIO, mensagem);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class CidadeTest {
         }catch (Exception e) {
             mensagem = e.getMessage();
         }
-        Assert.assertEquals("Estado é obrigatório", mensagem);
+        Assert.assertEquals(Cidade.ESTADO_OBRIGATORIO, mensagem);
     }
 
     @Test
