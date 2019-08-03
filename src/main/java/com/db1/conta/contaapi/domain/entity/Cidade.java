@@ -5,9 +5,11 @@ import org.springframework.util.Assert;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cidade", uniqueConstraints = @UniqueConstraint(columnNames = { "nome", "estado" }))
+@Table(name = "cidade", uniqueConstraints = @UniqueConstraint(columnNames = { "nome", "estado" }))  // nome de cidade não pode se repetir em um estado
 public class Cidade {
 
+    public static final String NOME_OBRIGATORIO = "Informar o nome da cidade é obrigatório";
+    public static final String ESTADO_OBRIGATORIO = "Informar o nome do estado é obrigatório";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +24,8 @@ public class Cidade {
     protected Cidade() {}               // construtor para o JPA
 
     public Cidade(String nome, Estado estado) {
-        Assert.hasText(nome, "Nome é obrigatório");
-        Assert.notNull(estado, "Estado é obrigatório");
+        Assert.hasText(nome, NOME_OBRIGATORIO);
+        Assert.notNull(estado, ESTADO_OBRIGATORIO);
         this.nome = nome;
         this.estado = estado;
     }

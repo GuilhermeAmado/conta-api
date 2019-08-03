@@ -5,7 +5,7 @@ import org.springframework.util.Assert;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "agencia", uniqueConstraints = @UniqueConstraint(columnNames = { "numero", "fk_cidade" }))   // só pode ter um único número de agencia por cidade
+@Table(name = "agencia")
 public class Agencia {
 
     public static final String NUMERO_AGENCIA_OBRIGATORIO = "Número da agencia é obrigatório";
@@ -16,7 +16,7 @@ public class Agencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "numero", length = 10, nullable = false, unique = true)
+    @Column(name = "numero", length = 10, nullable = false, unique = true)      // o número da agencia é único
     private String numero;
 
     @Column(name = "digito", length = 2, nullable = false)

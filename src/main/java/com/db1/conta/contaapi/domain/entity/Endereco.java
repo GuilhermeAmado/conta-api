@@ -38,10 +38,10 @@ public class Endereco {
     @Column(name = "enderecoTipo", length = 15, nullable = false)
     private EnderecoTipo enderecoTipo;
 
-    @Column(name = "complemento", nullable = true)
+    @Column(name = "complemento", length = 60, nullable = true)
     private String complemento;
 
-    @Column(name = "cep", nullable = false)
+    @Column(name = "cep", length = 8, nullable = false)
     private String cep;
 
     protected Endereco() {}    // construtor para o JPA
@@ -90,5 +90,9 @@ public class Endereco {
 
     public String getCep() {
         return cep;
+    }
+
+    public long getId() {
+        return id;
     }
 }

@@ -31,10 +31,10 @@ public class Conta {
     private String numero;
 
     @ManyToOne
-    @JoinColumn(name = "fk_cliente")
+    @JoinColumn(name = "fk_cliente", nullable = false)
     private Cliente cliente;
 
-    @Column(name = "saldo")
+    @Column(name = "saldo", nullable = false, precision = 14, scale = 2)
     private Double saldo;
 
     @ElementCollection
@@ -54,6 +54,16 @@ public class Conta {
         this.numero = numero;
         this.cliente = cliente;
         this.saldo = 0.0;
+    }
+
+    public void depositar(Double valor) {
+        this.saldo += valor;
+        this.historicos.add(new Historico(HistoricoTipo.ENTRADA, valor, this.saldo));
+    }
+
+    public void sacar(Double valor) {
+        this.saldo -= valor;
+        this.historicos.add(new Historico(HistoricoTipo.SAIDA, valor, this.saldo));
     }
 
     public Long getId() {

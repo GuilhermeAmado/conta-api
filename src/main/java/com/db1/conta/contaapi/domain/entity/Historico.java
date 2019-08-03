@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 public class Historico {
 
     public static final String INFORMAR_TIPO_HISTORICO_OBRIGATORIO = "Informar o tipo de histórico é obrigatório";
-    public static final String INFORMAR_DATA_OBRIGATORIO = "Informar a data é obrigatório";
     public static final String INFORMAR_VALOR_OBRIGATORIO = "Informar o valor é obrigatório";
     public static final String VALOR_DEVE_SER_MAIOR_QUE_ZERO = "Valor deve ser maior que zero";
 
@@ -18,27 +17,26 @@ public class Historico {
     @Column(name = "historicoTipo", length = 20, nullable = false)
     private HistoricoTipo historicoTipo;
 
-    @Column(name = "data")
+    @Column(name = "data", nullable = false, length = 30)
     private LocalDateTime data;
 
-    @Column(name = "valor")
+    @Column(name = "valor", nullable = false, precision = 14, scale = 2)    // precision = total de dígitos significativos, scale = casas decimais
     private Double valor;
 
-    @Column(name = "valorResultante")
+    @Column(name = "valorResultante", nullable = false, precision = 14, scale = 2)
     private Double valorResultante;
 
     protected Historico() {}    // construtor para o JPA
 
-    public Historico(HistoricoTipo historicoTipo, LocalDateTime data, Double valor) {
+    public Historico(HistoricoTipo historicoTipo, Double valor, Double valorResultante) {
         Assert.notNull(historicoTipo, INFORMAR_TIPO_HISTORICO_OBRIGATORIO);
-        Assert.notNull(data, INFORMAR_DATA_OBRIGATORIO);
         Assert.notNull(valor, INFORMAR_VALOR_OBRIGATORIO);
         Assert.isTrue(valor > 0, VALOR_DEVE_SER_MAIOR_QUE_ZERO);
 
         this.historicoTipo = historicoTipo;
         this.data = LocalDateTime.now();
         this.valor = valor;
-        this.valorResultante = getValorResultante();
+        this.valorResultante = valorResultante;
     }
 
     public HistoricoTipo getHistoricoTipo() {
