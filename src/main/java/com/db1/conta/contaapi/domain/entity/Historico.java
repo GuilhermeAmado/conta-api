@@ -11,6 +11,7 @@ public class Historico {
     public static final String INFORMAR_TIPO_HISTORICO_OBRIGATORIO = "Informar o tipo de histórico é obrigatório";
     public static final String INFORMAR_VALOR_OBRIGATORIO = "Informar o valor é obrigatório";
     public static final String VALOR_DEVE_SER_MAIOR_QUE_ZERO = "Valor deve ser maior que zero";
+    public static final String INFORMAR_VALOR_RESULTANTE_OBRIGATORIO = "Informar o valor resultante é obrigatorio";
 
 
     @Enumerated(EnumType.STRING)
@@ -31,6 +32,7 @@ public class Historico {
     public Historico(HistoricoTipo historicoTipo, Double valor, Double valorResultante) {
         Assert.notNull(historicoTipo, INFORMAR_TIPO_HISTORICO_OBRIGATORIO);
         Assert.notNull(valor, INFORMAR_VALOR_OBRIGATORIO);
+        Assert.notNull(valorResultante, INFORMAR_VALOR_RESULTANTE_OBRIGATORIO);
         Assert.isTrue(valor > 0, VALOR_DEVE_SER_MAIOR_QUE_ZERO);
 
         this.historicoTipo = historicoTipo;
