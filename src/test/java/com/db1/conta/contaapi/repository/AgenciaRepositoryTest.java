@@ -33,6 +33,7 @@ public class AgenciaRepositoryTest {
     public void deveSalvarUmaAgencia(){
         Cidade cidade = new Cidade("Arapongas", Estado.PR);
         Cidade cidadeSalva = cidadeRepository.save(cidade);
+        // Cidade cidade = cidadeRepository.save(new Cidade("Arapongas", Estado.PR));     => pode ser feito em uma só linha
 
         Agencia agencia = new Agencia("12345", "6", cidadeSalva);
         Agencia agenciaSalva = agenciaRepository.save(agencia);

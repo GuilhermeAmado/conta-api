@@ -37,7 +37,7 @@ public class CidadeRepositoryTest {
     @Test
     public void deveBuscarCidadePorNome() {
         Cidade cidade = new Cidade("Maringá", Estado.PR);
-        Cidade cidadeSalva = cidadeRepository.save(cidade);
+        cidadeRepository.save(cidade);
 
         Cidade cidadeBuscadaPorNome = cidadeRepository.findByNome("Maringá");
 
@@ -49,7 +49,7 @@ public class CidadeRepositoryTest {
     @Test
     public void deveRetornarCidadesPorEstado() {
         Cidade cidade = new Cidade("Maringá", Estado.PR);
-        Cidade cidadeSalva = cidadeRepository.save(cidade);
+        cidadeRepository.save(cidade);
 
         List<Cidade> cidades = cidadeRepository.findByEstado(Estado.PR);
 
