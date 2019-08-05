@@ -24,10 +24,20 @@ public class Cidade {
     protected Cidade() {}               // construtor para o JPA
 
     public Cidade(String nome, Estado estado) {
-        Assert.hasText(nome, NOME_OBRIGATORIO);
-        Assert.notNull(estado, ESTADO_OBRIGATORIO);
         this.nome = nome;
         this.estado = estado;
+        this.validateCidade();
+    }
+
+    public void alterar(String nome, Estado estado) {
+        this.nome = nome;
+        this.estado = estado;
+        this.validateCidade();
+    }
+
+    private void validateCidade() {
+        Assert.hasText(nome, NOME_OBRIGATORIO);
+        Assert.notNull(estado, ESTADO_OBRIGATORIO);
     }
 
     public Long getId() {
