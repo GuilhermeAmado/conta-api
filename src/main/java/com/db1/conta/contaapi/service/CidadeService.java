@@ -54,7 +54,6 @@ public class CidadeService {
         return cidadeResponseDTOList;
     }
 
-
     public CidadeResponseDTO buscarCidadePorId(Long cidadeId) {
         Optional<Cidade> optionalCidade = cidadeRepository.findById(cidadeId);
         if (optionalCidade.isPresent()) {
@@ -65,7 +64,7 @@ public class CidadeService {
     }
 
     public CidadeResponseDTO buscarCidadePorNome(String nome) {
-        Optional<Cidade> optionalCidade = cidadeRepository.findByNome(nome);
+        Optional<Cidade> optionalCidade = cidadeRepository.findByNomeOptional(nome);
         if (optionalCidade.isPresent()) {
             Cidade cidade = optionalCidade.get();
             return CidadeAdapter.entityToResponse(cidade);
