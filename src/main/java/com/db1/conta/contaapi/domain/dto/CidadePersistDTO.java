@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class CidadePersistDTO implements Serializable {
 
-    private static final long serialVersionUID = 7041215295972851764L;
+    private static final long serialVersionUID = 7041215295972851764L;      // se editar a classe precisa gerar novamente
     private String nome;
     private Estado estado;
 
