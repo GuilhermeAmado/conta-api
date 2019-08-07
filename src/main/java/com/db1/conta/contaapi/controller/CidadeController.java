@@ -48,6 +48,7 @@ public class CidadeController {
 
     // método para deletar uma cidade
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deletarCidadePorId(@PathVariable("id") Long id) {
         cidadeService.deletarCidade(id);
     }
